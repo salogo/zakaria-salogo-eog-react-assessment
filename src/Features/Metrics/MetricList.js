@@ -18,14 +18,6 @@ export default () => {
   return <MetricList />;
 };
 
-let query = query_metric;
-let [result] = useQuery({
-  query,
-  variables: {}
-});
-const {  data } = result;
-console.log(data)
-
 const MetricListData = () => {
   const dispatch = useDispatch();
   const metricList = useSelector(state => state.metricList);

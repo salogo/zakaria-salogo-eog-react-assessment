@@ -14,8 +14,8 @@ const slice = createSlice({
   name: 'metriclist',
   initialState,
   reducers: {
-    metricListRecevied(state){
-        state.getMetrics = metricsDataReceived
+    metricListRecevied(state, action){
+        state.getMetrics = metricsDataReceived + action.payload 
     },
     
    
