@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { useQuery, useSubscription } from 'urql';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from "./metricListReducer";
@@ -9,43 +9,32 @@ const query_metric = `
         getMetrics
 }`;
 
-const getMetric = (state) => {
-  const getMetrics = state.metricList.getMetrics ;
-  return getMetrics;
-};
-
 export default () => {
   return <MetricList />;
 };
 
-const MetricListData = () => {
+const MetricList = () => {
   const dispatch = useDispatch();
-  const metricList = useSelector(state => state.metricList);
+  const list =  useSelector(state => state.getMetrics)
 
   let query = query_metric;
   let [result] = useQuery({
     query,
     variables: {}
   });
-  const {  data } = result;
+  const { fetching, data, error } = result;
 
-  useEffect(() => {
-    const getMetrics = data;
-   
-    if (data) {
-       dispatch(actions.metricListRecevied(getMetrics))
-    }
-   
-    
-  }, [ data ]);
-};
+   if (fetching) return "Fetching...";
+   if (error) return "Error...";
 
-const MetricList = () => {
- 
- 
-  return (
-    <div>
-       
-    </div>
-  );
+   const metricsdatalist = data.getMetrics.map((metric, i)=>{
+    return <div key={i}>{metric}</div>
+  }) 
+  dispatch(actions.metricListRecevied(data.getMetrics))
+  
+
+  return <Fragment>
+       <div>{metricsdatalist}</div>
+  </Fragment>
+  
 };

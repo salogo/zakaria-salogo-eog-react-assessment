@@ -5,21 +5,17 @@ const initialState = {
     getMetrics : [],
 };
 
-const metricsDataReceived = (state, action) => {
-    const { getMetrics } = action;
-    return { getMetrics }
-}
 
 const slice = createSlice({
   name: 'metriclist',
   initialState,
   reducers: {
     metricListRecevied(state, action){
-        state.getMetrics = metricsDataReceived + action.payload 
+        state.getMetrics =  action.payload 
     },
-    
    
     },
+    
 });
 
 export const reducer = slice.reducer;
