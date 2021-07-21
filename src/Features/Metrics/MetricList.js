@@ -15,7 +15,7 @@ export default () => {
 
 const MetricList = () => {
   const dispatch = useDispatch();
-  const list =  useSelector(state => state.getMetrics)
+  //const list =  useSelector(state => state.getMetrics)
 
   let query = query_metric;
   let [result] = useQuery({
@@ -34,6 +34,7 @@ const MetricList = () => {
   
 
   return <Fragment>
+       <p>Metric List:</p>
        <div>{metricsdatalist}</div>
   </Fragment>
   

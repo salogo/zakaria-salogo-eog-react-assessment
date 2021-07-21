@@ -9,6 +9,8 @@ import Header from './components/Header';
 import Wrapper from './components/Wrapper';
 import NowWhat from './components/NowWhat';
 import MetricList from './Features/Metrics/MetricList';
+import NewMeasurements from './Features/Metrics/NewMeasurements';
+//import MultipleMeasurements from './Features/Metrics/MultipleMeasurements';
 
 const store = createStore();
 const theme = createMuiTheme({
@@ -31,7 +33,8 @@ const App = () => (
     <Provider store={store}>
       <Wrapper>
         <Header />
-        <MetricList />
+        
+        <NewMeasurements />
         <NowWhat />
         <ToastContainer />
       </Wrapper>
